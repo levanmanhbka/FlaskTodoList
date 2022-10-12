@@ -1,9 +1,6 @@
-from email.policy import default
-from enum import unique
-from time import timezone
-from todolist import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from todolist import db
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -18,3 +15,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     user_name = db.Column(db.String(150))
     notes = db.relationship("Note")
+
+    def __init__(self, email, user_name, password) -> None:
+        self.email = email
+        self.user_name = user_name
+        self.password = password

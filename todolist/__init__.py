@@ -2,9 +2,6 @@ from flask import Flask
 import os
 from dotenv import load_dotenv
 
-from todolist.user import user
-from todolist.views import views
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -29,6 +26,8 @@ def create_app():
     from todolist.models import Note, User
     create_database(app=app)
 
+    from todolist.user import user
+    from todolist.views import views
     
     app.register_blueprint(user)
     app.register_blueprint(views)
